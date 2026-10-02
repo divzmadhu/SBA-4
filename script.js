@@ -24,6 +24,10 @@ let taskCategory = document.getElementById("taskCategory");
 let taskDeadline = document.getElementById("taskDeadline");
 let taskStatus = document.getElementById("taskStatus");
 
+let statusFilter = document.getElementById("statusFilter");
+let categoryFilter = document.getElementById("categoryFilter");
+let filterButton = document.getElementById("filterButton");
+
 // let savedTasks = localStaorage.getItem(taskMateTasks);
 
 
@@ -182,6 +186,66 @@ function displayTasks() {
 //     }
 
 // }
+
+filterButton.addEventListener("click", filterTasks);
+
+function filterTasks() {
+
+    let selectedStatus = statusFilter.value;
+    let selectedCategory = categoryFilter.value;
+
+    let filteredTasks = tasks.filter(function (task) {
+
+        // Check status
+        let statusMatches =
+            selectedStatus === "All" ||
+            task.status === selectedStatus;
+
+        // Check category
+        let categoryMatches =
+            selectedCategory === "All" ||
+            task.category === selectedCategory;
+
+        // Task must match both filters
+        return statusMatches && categoryMatches;
+    });
+
+    displayFilteredTasks(filteredTasks);
+}
+function displayFilteredTasks(filteredTasks) {
+
+    taskList.innerHTML = "";
+
+    if (filteredTasks.length === 0) {
+        taskList.innerText = "No matching tasks found.";
+        return;
+    }
+
+    filteredTasks.forEach(function (task) {
+
+        let taskCard = document.createElement("li");
+
+        let taskNameElement = document.createElement("h3");
+        taskNameElement.innerText = task.taskName;
+
+        let categoryElement = document.createElement("p");
+        categoryElement.innerText = "Category: " + task.category;
+
+        let deadlineElement = document.createElement("p");
+        deadlineElement.innerText =
+            "Deadline: " + task.deadline.toDateString();
+
+        let statusElement = document.createElement("p");
+        statusElement.innerText = "Status: " + task.status;
+
+        taskCard.appendChild(taskNameElement);
+        taskCard.appendChild(categoryElement);
+        taskCard.appendChild(deadlineElement);
+        taskCard.appendChild(statusElement);
+
+        taskList.appendChild(taskCard);
+    });
+}
 
 updateStatusButton.addEventListener("click", updateStatus);
 

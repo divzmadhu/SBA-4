@@ -15,7 +15,14 @@
 
     <input id="taskName" type="text" placeholder="Enter a task name" />
 
-    <input id="taskCategory" type="text" placeholder="Enter task category" />
+    <select id="taskCategory">
+        <option value="">Select category</option>
+        <option value="School">School</option>
+        <option value="Personal">Personal</option>
+        <option value="Work">Work</option>
+    </select>
+
+    <!-- <input id="taskCategory" type="text" placeholder="Enter task category" /> -->
 
     <input id="taskDeadline" type="date" />
 
@@ -28,12 +35,48 @@
 
     <button id="addTaskButton">Add Task</button>
     <button id="displayTaskButton">Display Task</button>
-    <button id ="updateStatusButton"> Update Status</button>
-    <!-- <div id="taskList"></div> -->
-     <ol id ="taskList"></ol>
-     
-    <button id="removeTaskButton">Remove Last Task</button>
-    <ul id="taskList1"></ul>
+    <button id="updateStatusButton"> Update Status</button>
+
+
+
+
+   
+    <h2>Filter Tasks</h2>
+
+    <label for="statusFilter">Filter by Status:</label>
+
+    <select id="statusFilter">
+        <option value="All">All</option>       
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+        <option value="Overdue">Overdue</option>
+    </select>
+
+
+
+    <label for="categoryFilter">Filter by Category:</label>
+
+    <select id="categoryFilter">
+        <option value="All">All Categories</option>
+        <option value="School">School</option>
+        <option value="Personal">Personal</option>
+        <option value="Work">Work</option>
+    </select>
+
+
+    <!-- <input type="text" id="categoryFilter" placeholder="Enter category"> -->
+
+    <button id="filterButton">Filter Tasks</button>
+
+
+    <!-- Display tasks -->
+    <div id="taskList"></div>
+
+    <!-- <div id="taskList"></div>
+    <ol id="taskList"></ol> -->
+
+    <!-- <button id="removeTaskButton">Remove Last Task</button>
+    <ul id="taskList1"></ul> -->
 </body>
 
 </html>
