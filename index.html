@@ -13,70 +13,83 @@
     Hello & Welcome!!
     <h1>TaskMate - Task Management App </h1>
 
-    <input id="taskName" type="text" placeholder="Enter a task name" />
+    <div class="control-section">
 
-    <select id="taskCategory">
-        <option value="">Select category</option>
-        <option value="School">School</option>
-        <option value="Personal">Personal</option>
-        <option value="Work">Work</option>
-    </select>
+        <input id="taskName" type="text" placeholder="Enter a task name" />
 
-    <!-- <input id="taskCategory" type="text" placeholder="Enter task category" /> -->
+        <select id="taskCategory">
+            <option value="">Select category</option>
+            <option value="School">School</option>
+            <option value="Personal">Personal</option>
+            <option value="Work">Work</option>
+        </select>
 
-    <input id="taskDeadline" type="date" />
+        <!-- <input id="taskCategory" type="text" placeholder="Enter task category" /> -->
 
-    <select id="taskStatus">
-        <option value="">Select status</option>
-        <option value="In Progress">In Progress</option>
-        <option value="Completed">Completed</option>
-        <option value="Overdue">Overdue</option>
-    </select>
+        <input id="taskDeadline" type="date" />
 
-    <button id="addTaskButton">Add Task</button>
-    <button id="displayTaskButton">Display Task</button>
-    <button id="updateStatusButton"> Update Status</button>
+        <select id="taskStatus">
+            <option value="">Select status</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+            <option value="Overdue">Overdue</option>
+        </select>
 
-
-
-
-   
-    <h2>Filter Tasks</h2>
-
-    <label for="statusFilter">Filter by Status:</label>
-
-    <select id="statusFilter">
-        <option value="All">All</option>       
-        <option value="In Progress">In Progress</option>
-        <option value="Completed">Completed</option>
-        <option value="Overdue">Overdue</option>
-    </select>
+        <button id="addTaskButton">Add Task</button>
+        <button id="displayTaskButton">Display Task</button>
+        <button id="updateStatusButton"> Update Status</button>
 
 
 
-    <label for="categoryFilter">Filter by Category:</label>
-
-    <select id="categoryFilter">
-        <option value="All">All Categories</option>
-        <option value="School">School</option>
-        <option value="Personal">Personal</option>
-        <option value="Work">Work</option>
-    </select>
 
 
-    <!-- <input type="text" id="categoryFilter" placeholder="Enter category"> -->
+        <h2>Filter Tasks</h2>
 
-    <button id="filterButton">Filter Tasks</button>
+        <label for="statusFilter">Filter by Status:</label>
+
+        <select id="statusFilter">
+            <option value="All">All</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+            <option value="Overdue">Overdue</option>
+        </select>
 
 
-    <!-- Display tasks -->
-    <div id="taskList"></div>
 
-    <!-- <div id="taskList"></div>
-    <ol id="taskList"></ol> -->
+        <label for="categoryFilter">Filter by Category:</label>
 
-    <button id="removeTaskButton">Remove Last Task</button>
-    <ul id="taskList1"></ul>
+        <select id="categoryFilter">
+            <option value="All">All Categories</option>
+            <option value="School">School</option>
+            <option value="Personal">Personal</option>
+            <option value="Work">Work</option>
+        </select>
+
+
+        <!-- <input type="text" id="categoryFilter" placeholder="Enter category"> -->
+
+        <button id="filterButton">Filter Tasks</button>
+
+    </div>
+
+    <div class="display-section">
+
+        <h2>My Tasks</h2>
+
+        <ul id="taskList"></ul>
+
+    </div>
+
+    <!-- <div class="update-section">
+
+        <h2>Update Task Status</h2>
+
+        <ul id="updateTaskList"></ul>
+
+    </div> -->
+
+
+
 </body>
 
 </html>

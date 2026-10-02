@@ -1,0 +1,16 @@
+body{
+    background-color: beige;
+}
+
+.control-section{
+    border: 3px solid #ddd;
+    padding: 15px;
+    margin: 15px 0;
+    background-color:gray ;
+}
+.display-section {
+    border: 3px solid #ddd;
+    padding: 15px;
+    margin: 15px 0;
+    background-color:burlywood
+}

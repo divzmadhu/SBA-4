@@ -2,7 +2,6 @@
  * =================================================================
  * PROJECT: Dynamic Task Management Application
  * MODULE:  JavaScript Review (SBA)
- * AUTHOR:  [Your Name]
  * DATE:    09/20/26
  * 
  **  Objectives:
@@ -28,6 +27,9 @@ let statusFilter = document.getElementById("statusFilter");
 let categoryFilter = document.getElementById("categoryFilter");
 let filterButton = document.getElementById("filterButton");
 
+
+
+
 // let savedTasks = localStaorage.getItem(taskMateTasks);
 
 
@@ -36,9 +38,12 @@ let addTaskButton = document.getElementById("addTaskButton");
 
 let displayTaskButton = document.getElementById("displayTaskButton");
 
+let updateStatusButton = document.getElementById("updateStatusButton");
 
-let removeItemButton = document.getElementById("removeItemButton");
+
 let taskList = document.getElementById("taskList");
+
+let updateTaskList = document.getElementById("updateTaskList");
 
 //let taskText = taskInput.value;
 
@@ -124,14 +129,33 @@ function displayTasks() {
         let statusElement = document.createElement("p");
         statusElement.innerText = "Status: " + task.status;
 
+        // Remove button
+let removeButton = document.createElement("button");
+removeButton.innerText = "Remove";
+
+removeButton.addEventListener("click", function () {
+
+    tasks = tasks.filter(function (item) {
+        return item.id !== task.id;
+    });
+
+    saveTasks();
+    displayTasks();
+});
+
+
         taskCard.appendChild(taskNameElement);
         taskCard.appendChild(categoryElement);
         taskCard.appendChild(deadlineElement);
         taskCard.appendChild(statusElement);
 
+        taskCard.appendChild(removeButton);
+
         taskList.appendChild(taskCard);
     });
 }
+
+
 
 
 // function compare_twodates(date1, temp) {
@@ -154,6 +178,7 @@ function displayTasks() {
 
 // compare_twodates(date1,temp);
 
+// Update Status Version 1 
 
 // updateStatusButton.addEventListener("click", updateStatus);
 
@@ -166,8 +191,6 @@ function displayTasks() {
 //     }
 //     for (let i = 0; i < tasks.length; i++) {
 //         // var task = tasks[i];
-//         // Your code here
-
 //         // tasks.forEach(function (task) {
 
 //         let currentTaskIndex = i;
@@ -212,6 +235,8 @@ function filterTasks() {
 
     displayFilteredTasks(filteredTasks);
 }
+
+
 function displayFilteredTasks(filteredTasks) {
 
     taskList.innerHTML = "";
@@ -238,6 +263,7 @@ function displayFilteredTasks(filteredTasks) {
         let statusElement = document.createElement("p");
         statusElement.innerText = "Status: " + task.status;
 
+
         taskCard.appendChild(taskNameElement);
         taskCard.appendChild(categoryElement);
         taskCard.appendChild(deadlineElement);
@@ -247,153 +273,58 @@ function displayFilteredTasks(filteredTasks) {
     });
 }
 
+
 updateStatusButton.addEventListener("click", updateStatus);
 
 function updateStatus() {
-
     taskList.innerHTML = "";
 
     if (tasks.length === 0) {
         taskList.innerText = "No tasks to display.";
         return;
     }
-
-    tasks.forEach(function (task) {
-
-        // Check the deadline
-        if (task.status !== "Completed") {
-
-            if (task.deadline < new Date()) {
-                task.status = "Overdue";
-            } else {
-                task.status = "In Progress";
-            }
-        }
-
-        // Create task item
-        let taskItem = document.createElement("li");
-
-        // Task name
-        let taskNameElement = document.createElement("h3");
-        taskNameElement.innerText = task.taskName;
-
-        // Category
-        let categoryElement = document.createElement("p");
-        categoryElement.innerText = "Category: " + task.category;
-
-        // Deadline
-        let deadlineElement = document.createElement("p");
-        deadlineElement.innerText =
-            "Deadline: " + task.deadline.toDateString();
-
-        // Status dropdown
-        let statusDropdown = document.createElement("select");
-
-        let statuses = ["In Progress", "Completed"];
-
-        statuses.forEach(function (status) {
-
-            let option = document.createElement("option");
-
-            option.value = status;
-            option.innerText = status;
-
-            if (task.status === status) {
-                option.selected = true;
-            }
-
-            statusDropdown.appendChild(option);
-        });
-
-        // If task is overdue, show Overdue instead of dropdown
-        if (task.status === "Overdue") {
-
-            statusDropdown = document.createElement("span");
-            statusDropdown.innerText = "Overdue";
-        }
-
-        // Update status when user changes dropdown
-        if (task.status !== "Overdue") {
-
-            statusDropdown.addEventListener("change", function () {
-
-                task.status = statusDropdown.value;
-
-                saveTasks();
-
-                displayTasks();
-            });
-        }
-
-        // Add elements to task item
-        taskItem.appendChild(taskNameElement);
-        taskItem.appendChild(categoryElement);
-        taskItem.appendChild(deadlineElement);
-
-        let statusLabel = document.createElement("p");
-        statusLabel.innerText = "Status: ";
-
-        statusLabel.appendChild(statusDropdown);
-
-        taskItem.appendChild(statusLabel);
-
-        taskList.appendChild(taskItem);
-    });
-
-    // Save automatic Overdue changes
-    saveTasks();
-}
-
-// Update Status Initial Version 
-
-// updateStatusButton.addEventListener("click", updateStatus);
-
-// function updateStatus() {
-//     taskList.innerHTML = "";
-
-//     if (tasks.length === 0) {
-//         taskList.innerText = "No tasks to display.";
-//         return;
-//     }
-//     let checkedTasks =0;
-//     for (let i = 0; i < tasks.length; i++) {
-//         let task = tasks[i];
+    let checkedTasks =0;
+    for (let i = 0; i < tasks.length; i++) {
+        let task = tasks[i];
         
 
-//         let taskItem = document.createElement('li');
+        let taskItem = document.createElement('li');
 
-//         let taskNameElement = document.createElement("span");
-//         taskNameElement.innerText = task.taskName;
+        let taskNameElement = document.createElement("span");
+        taskNameElement.innerText = task.taskName;
 
-//         let completedButton = document.createElement("button");
-//         completedButton.innerText = "Completed?";
+        let completedButton = document.createElement("button");
+        completedButton.innerText = "Completed?";
 
-//         completedButton.addEventListener("click",function(){
-//             let userAnswer = confirm("Is this task completed?");
-//             if(userAnswer)
-//             {
-//                 task.status ="Completed";
-//             }
-//             else if(task.deadline > new Date())
-//             {
-//               task.status ="In Progress"
-//             }
-//             else{
-//                 task.status ="Overdue"
-//             }
-//             console.log(task);
-//             checkedTasks ++;
-//             completedButton.disabled = true;
-//             if (checkedTasks === tasks.length)
-//             {
-//                 taskList.innerHTML ="";
+        completedButton.addEventListener("click",function(){
+            let userAnswer = confirm("Is this task completed?");
+            if(userAnswer)
+            {
+                task.status ="Completed";
+            }
+            else if(task.deadline > new Date())
+            {
+              task.status ="In Progress"
+            }
+            else{
+                task.status ="Overdue"
+            }
+            console.log(task);
+            checkedTasks ++;
+            completedButton.disabled = true;
+            if (checkedTasks === tasks.length)
+            {
+                taskList.innerHTML ="";
                 
-//                 displayTasks();
-//             }
+                displayTasks();
+            }
             
-//         });
-//         taskItem.appendChild(taskNameElement);
-//         taskItem.appendChild(completedButton);
-//         taskList.appendChild(taskItem);
-//     }
-// }
+        });
+        taskItem.appendChild(taskNameElement);
+        taskItem.appendChild(completedButton);
+        taskList.appendChild(taskItem);
+    }
+}
+
+
+
